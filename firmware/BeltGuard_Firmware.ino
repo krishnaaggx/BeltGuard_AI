@@ -76,7 +76,6 @@ void publishPayload() {
     doc["sensor_fault_flags"] = doc["sensor_fault_flags"].as<int>() | (1 << 5);
   doc["anomaly_score"]   = 0.0;   // backend will compute real value
   doc["risk_level"]      = "NORMAL";
-  doc["sensor_fault_flags"] = 0;
 
   char buffer[512];
   serializeJson(doc, buffer);

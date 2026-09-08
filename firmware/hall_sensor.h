@@ -1,7 +1,7 @@
 #ifndef HALL_SENSOR_H
 #define HALL_SENSOR_H
 
-#define HALL_PIN 34  // change GPIO if needed — must be input-capable
+#include "pins.h"  // change GPIO if needed — must be input-capable
 
 volatile unsigned long lastPulseTime = 0;
 volatile unsigned long pulseInterval = 0;

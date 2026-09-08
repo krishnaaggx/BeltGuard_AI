@@ -5,7 +5,7 @@
 #include <DallasTemperature.h>
 #include <OneWire.h>
 
-#define DS18B20_PIN 4  // change this GPIO pin if needed
+#include "pins.h" // change this GPIO pin if needed
 
 Adafruit_MLX90614 mlx;
 OneWire oneWire(DS18B20_PIN);

@@ -2,6 +2,7 @@
 #define MPU6050_READER_H
 
 #include <MPU6050.h>
+#include "pins.h"
 
 MPU6050 mpu;
 bool mpuReady = false;
