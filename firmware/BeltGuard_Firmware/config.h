@@ -2,11 +2,11 @@
 #define CONFIG_H
 
 // WiFi
-#define WIFI_SSID     "AMPEE"
-#define WIFI_PASSWORD "Vinod@321"
+#define WIFI_SSID     "ayush"
+#define WIFI_PASSWORD "9990781237"
 
-// MQTT Broker — Charu's laptop IP on same network
-#define MQTT_BROKER   "192.168.1.100"  // change to Charu's IP later
+// MQTT Broker — Laptop IP on same network
+#define MQTT_BROKER   "172.24.127.110"
 #define MQTT_PORT     1883
 #define MQTT_CLIENT_ID "BeltGuard_NODE_01"
 
