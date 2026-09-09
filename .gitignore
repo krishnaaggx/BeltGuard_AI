@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Environment & secrets
 .env
 *.env
@@ -11,3 +12,60 @@ __pycache__/
 
 # OS
 .DS_Store
+=======
+# ── Python ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+env/
+*.egg-info/
+
+# ── Environment & secrets ────────────────────────────
+*.env
+.env
+**/config.py
+credentials.json
+secrets.json
+*.key
+
+# ── ML artifacts ─────────────────────────────────────
+*.pkl
+*.joblib
+*.h5
+*.model
+ml/data/
+ml/models/
+ml/runs/
+*.csv
+
+# ── Arduino / firmware build artifacts ───────────────
+firmware/build/
+firmware/.pio/
+*.elf
+*.bin
+*.hex
+*.map
+
+# ── Backend ──────────────────────────────────────────
+instance/
+*.db
+*.sqlite3
+backend/venv/
+backend/.venv/
+
+# ── OS junk ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Logs ─────────────────────────────────────────────
+*.log
+logs/
+>>>>>>> 65dbef1db32ebe87fecdbd9752205161b9771c79

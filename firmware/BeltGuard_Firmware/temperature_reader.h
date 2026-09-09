@@ -5,7 +5,7 @@
 #include <DallasTemperature.h>
 #include <OneWire.h>
 
-#define DS18B20_PIN 4  // change this GPIO pin if needed
+#include "pins.h" // change this GPIO pin if needed
 
 Adafruit_MLX90614 mlx;
 OneWire oneWire(DS18B20_PIN);
@@ -15,14 +15,9 @@ bool mlxReady = false;
 bool dsReady  = false;
 
 void initTemperatureSensors() {
-  // MLX90614
-  if (mlx.begin()) {
-    Serial.println("MLX90614 connected.");
-    mlxReady = true;
-  } else {
-    Serial.println("MLX90614 FAILED — check wiring.");
-    mlxReady = false;
-  }
+  // MLX90614 — HARDWARE FAILURE, REMOVED
+  mlxReady = false;
+  Serial.println("MLX90614 skipped — not available.");
 
   // DS18B20
   ds18b20.begin();

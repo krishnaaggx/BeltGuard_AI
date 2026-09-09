@@ -3,7 +3,7 @@
 
 // Define your IR sensor GPIO pins
 // Add or remove pins based on how many sensors you have
-#define IR_SENSOR_COUNT 3
+#include "pins.h"
 const int IR_PINS[IR_SENSOR_COUNT] = {32, 33, 35};
 
 bool irReady = false;

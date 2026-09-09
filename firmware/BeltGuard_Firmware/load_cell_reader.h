@@ -3,8 +3,7 @@
 
 #include <HX711.h>
 
-#define HX711_DOUT_PIN 16
-#define HX711_SCK_PIN  17
+#include "pins.h"
 
 HX711 scale;
 bool hx711Ready = false;
