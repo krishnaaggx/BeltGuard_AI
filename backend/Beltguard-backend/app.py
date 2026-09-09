@@ -1,5 +1,6 @@
 import os
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient
 
@@ -19,6 +20,7 @@ influx_client = InfluxDBClient(
 query_api = influx_client.query_api()
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")
@@ -88,10 +90,15 @@ def alerts():
     from(bucket: "{INFLUX_BUCKET}")
       |> range(start: -24h)
       |> filter(fn: (r) => r["_measurement"] == "belt_anomaly")
+      |> pivot(
+          rowKey: ["_time"],
+          columnKey: ["_field"],
+          valueColumn: "_value"
+      )
       |> filter(fn: (r) =>
-          r["risk_level"] == "WARNING" or
-          r["risk_level"] == "CRITICAL" or
-          r["risk_level"] == "SENSOR_FAULT"
+          r.risk_level == "WARNING" or
+          r.risk_level == "CRITICAL" or
+          r.risk_level == "SENSOR_FAULT"
       )
     '''
 
@@ -103,8 +110,8 @@ def alerts():
         for record in table.records:
             result.append({
                 "timestamp": record.get_time().isoformat(),
-                "field": record.get_field(),
-                "value": record.get_value()
+                "risk_level": record.values.get("risk_level"),
+                "anomaly_score": record.values.get("anomaly_score")
             })
 
     return jsonify(result)
