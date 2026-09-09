@@ -1,6 +1,13 @@
-config.py
+# Environment & secrets
+.env
 *.env
+credentials.json
+config.py
+
+# Python
+venv/
 __pycache__/
 *.pyc
+
+# OS
 .DS_Store
-credentials.json
