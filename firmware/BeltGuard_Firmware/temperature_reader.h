@@ -5,7 +5,7 @@
 #include <DallasTemperature.h>
 #include <OneWire.h>
 
-#include "pins.h" // change this GPIO pin if needed
+#include "pins.h"
 
 Adafruit_MLX90614 mlx;
 OneWire oneWire(DS18B20_PIN);
@@ -15,7 +15,8 @@ bool mlxReady = false;
 bool dsReady  = false;
 
 void initTemperatureSensors() {
-  // MLX90614 — HARDWARE FAILURE, REMOVED
+  // MLX90614 — HARDWARE FAILURE, REMOVED FROM SETUP
+  // Fried during soldering — secondary sensor, skipped for now
   mlxReady = false;
   Serial.println("MLX90614 skipped — not available.");
 
@@ -31,7 +32,7 @@ void initTemperatureSensors() {
 }
 
 struct TemperatureData {
-  float surface_c;   // MLX90614 — splice surface
+  float surface_c;   // MLX90614 — splice surface (unavailable)
   float bearing_c;   // DS18B20  — idler bearing
   bool  mlxFault;
   bool  dsFault;
@@ -40,17 +41,8 @@ struct TemperatureData {
 TemperatureData readTemperatures() {
   TemperatureData result = {0.0, 0.0, false, false};
 
-  // MLX90614
-  if (!mlxReady) {
-    result.mlxFault = true;
-  } else {
-    float t = mlx.readObjectTempC();
-    if (isnan(t) || t < -40.0 || t > 200.0) {
-      result.mlxFault = true;
-    } else {
-      result.surface_c = t;
-    }
-  }
+  // MLX90614 — always fault since hardware removed
+  result.mlxFault = true;
 
   // DS18B20
   if (!dsReady) {
