@@ -15,14 +15,9 @@ bool mlxReady = false;
 bool dsReady  = false;
 
 void initTemperatureSensors() {
-  // MLX90614
-  if (mlx.begin()) {
-    Serial.println("MLX90614 connected.");
-    mlxReady = true;
-  } else {
-    Serial.println("MLX90614 FAILED — check wiring.");
-    mlxReady = false;
-  }
+  // MLX90614 — HARDWARE FAILURE, REMOVED
+  mlxReady = false;
+  Serial.println("MLX90614 skipped — not available.");
 
   // DS18B20
   ds18b20.begin();

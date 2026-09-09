@@ -8,7 +8,6 @@ MPU6050 mpu;
 bool mpuReady = false;
 
 void initMPU6050() {
-  Wire.begin();
   mpu.initialize();
   if (mpu.testConnection()) {
     Serial.println("MPU6050 connected.");

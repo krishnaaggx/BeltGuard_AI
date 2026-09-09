@@ -42,6 +42,7 @@ void connectWiFi() {
 
 void connectMQTT() {
 
+  mqttClient.setBufferSize(1024);
   mqttClient.setServer(MQTT_BROKER, MQTT_PORT);
 
   while (!mqttClient.connected()) {
@@ -114,9 +115,9 @@ void publishPayload() {
   doc["temp_surface_c"] = temps.surface_c;
   doc["temp_bearing_c"] = temps.bearing_c;
 
-  if (temps.mlxFault) {
-    sensorFaultFlags |= (1 << 1);
-  }
+  //if (temps.mlxFault) {
+  //  sensorFaultFlags |= (1 << 1);
+  //}
 
   if (temps.dsFault) {
     sensorFaultFlags |= (1 << 2);
@@ -229,6 +230,7 @@ void setup() {
   Serial.begin(115200);
 
   delay(1000);
+  Wire.begin(21, 22);
 
   Serial.println();
   Serial.println("================================");
